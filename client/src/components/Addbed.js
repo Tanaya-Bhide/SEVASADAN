@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import './addbed.css'
 
 const initialValue = {
   roomno:'',
@@ -42,7 +43,7 @@ const AddBeds=()=>{
             <span className="details">Patient</span>
             <input type="text" onChange={(e)=>{onValueChange(e)}} value={patient} placeholder="Enter Patients name" name="patient" />
           </div>
-        <div class="button">
+        <div class="bed-button">
          <button className="button" onClick={()=>addUserDetails()}>Add Bed</button>
         </div>
     </div>

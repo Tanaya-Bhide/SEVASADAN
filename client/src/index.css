@@ -25,7 +25,6 @@
 
 .card {
     box-shadow: 0 0 2px rgb(189, 188, 188);
-    border-radius: 10px;
     padding: 20px;
 
 }
@@ -74,6 +73,6 @@
     color: white;
     max-width: max-content;
     padding: 7px 15px;
-    margin-left: -40px;
+    margin-left: 10px;
     border-bottom-left-radius: 10px;
 }
