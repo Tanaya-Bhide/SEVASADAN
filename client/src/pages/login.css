@@ -1,0 +1,61 @@
+.authentication {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0e4d4d;
+}
+
+.authentication-form {
+    max-width: 500px !important;
+    background-color: #386060;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 300px;
+}
+
+.primary-button {
+    background-color: #1890ff;
+    color: #fff;
+    border: none;
+    margin-top: 10px;
+}
+
+.primary-button:hover {
+    background-color: #40a9ff;
+}
+
+.full-width-button {
+    width: 100%;
+}
+
+.anchor {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+    margin-top: 0.5rem;
+    padding: 1.2rem;
+    border: 2px solid #005550;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    width: 100%;
+    background-color: #f0f5f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

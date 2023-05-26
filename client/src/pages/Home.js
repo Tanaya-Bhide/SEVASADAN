@@ -5,6 +5,7 @@ import { Col, Row } from "antd";
 import Doctor from "../components/Doctor";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
+import "./Home.css";
 
 function Home() {
   const [doctors, setDoctors] = useState([]);
@@ -36,7 +37,9 @@ function Home() {
       <Row gutter={20}>
         {doctors.map((doctor) => (
           <Col key={doctor.id} span={8} xs={24} sm={24} lg={8}>
-            <Doctor doctor={doctor} />
+            <div className="doctor-card">
+              <Doctor doctor={doctor} />
+            </div>
           </Col>
         ))}
       </Row>
@@ -45,4 +48,3 @@ function Home() {
 }
 
 export default Home;
- 

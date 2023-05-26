@@ -1,0 +1,36 @@
+.add-beds-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .add-bed-button {
+    margin-top: 20px;
+    background-color: #1a237e !important;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-bed-button:hover {
+    background-color: #1976d2;
+  }
+  
+  
+  .add-bed-form {
+    width: 50%;
+    margin: 5% 0 0 25%;
+  }
+  
+  .add-bed-form .MuiFormControl-root {
+    margin-top: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .add-bed-form .MuiInputBase-root {
+    width: 100%;
+  }
+  

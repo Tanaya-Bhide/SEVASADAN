@@ -3,7 +3,7 @@ import "../layout.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Badge } from "antd";
-
+import { FaBed } from "react-icons/fa";
 function Layout({ children }) {
   const [collapsed, setCollapsed] = useState(false);
   const { user } = useSelector((state) => state.user);
@@ -76,27 +76,22 @@ function Layout({ children }) {
     {
       name: "Beds",
       path: "/getbed",
-      icon: "ri-money-dollar-circle-line",
-    },
+      icon: "ri-hotel-bed-line",
+    }, 
     {
       name: "Addbed",
       path: "/addbed",
-      icon: "ri-money-dollar-circle-line",
+      icon: "ri-hotel-bed-fill",
     },
     {
       name: "Add Inventory stock",
       path: "/addinven",
-      icon: "ri-money-dollar-circle-line",
+      icon: "ri-home-smile-line",
     },
     {
       name: "Inventory List",
       path: "/getinven",
-      icon: "ri-money-dollar-circle-line",
-    },
-    {
-      name: "billing",
-      path: "/bill",
-      icon: "ri-money-dollar-circle-line",
+      icon: "ri-file-list-fill",
     },
   ];
 

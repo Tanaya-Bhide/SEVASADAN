@@ -3,6 +3,7 @@ import { Table, TableHead, TableCell, Paper, TableRow, TableBody, Button, styled
 
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Layout from './Layout';
 
 const StyledTable = styled(Table)`
     width: 90%;
@@ -12,8 +13,7 @@ const StyledTable = styled(Table)`
 const THead = styled(TableRow)`
     & > th {
         font-size: 20px;
-        background: #000000;
-        color: #FFFFFF;
+        color:  #000000;
     }
 `;
 
@@ -41,6 +41,7 @@ const ListMedicine = () => {
     }
 
     return (
+        <Layout>
         <StyledTable>
             <TableHead>
                 <THead>
@@ -69,13 +70,19 @@ const ListMedicine = () => {
                         <TableCell>{user.ndc}</TableCell>
                         <TableCell>{user.barcode}</TableCell>
                         <TableCell>
-                            <Button color="primary" variant="contained" style={{marginRight:10}} component={Link} to={`/edit/${user._id}`}>Edit</Button> {/* change it to user.id to use JSON Server */}
-                            <Button color="secondary" variant="contained" onClick={() => deleteUserData(user._id)}>Delete</Button> {/* change it to user.id to use JSON Server */}
-                        </TableCell>
+    <Button style={{ backgroundColor: "rgb(0, 128, 0)", marginRight: 10 }} variant="contained" component={Link} to={`/edit/${user._id}`}>
+        Edit
+    </Button>
+    <Button style={{ backgroundColor: "#E74C3C" }} variant="contained" onClick={() => deleteUserData(user._id)}>
+        Delete
+    </Button>
+</TableCell>
+
                     </TRow>
                 ))}
             </TableBody>
         </StyledTable>
+        </Layout>
     )
 }
 

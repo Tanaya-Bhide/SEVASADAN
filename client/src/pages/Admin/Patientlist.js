@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import axios from "axios";
 import "./Patientlist.css";
+import Layout from "../../components/Layout";
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
@@ -54,6 +55,7 @@ const PatientList = () => {
   };
 
   return (
+    <Layout>
     <div>
       <h1></h1>
       <div className="input-container">
@@ -96,7 +98,7 @@ const PatientList = () => {
                   <Link
                     to={`/bill?objectId=${patient._id}&name=${patient.name}`}
                   >
-                    <button className="btn btn-billing">Billing</button>
+                    <button className="btn btn-billing">BILLING</button>
                   </Link>
                 </td>
               </tr>
@@ -105,6 +107,7 @@ const PatientList = () => {
       </table>
       <ToastContainer />
     </div>
+    </Layout>
   );
 };
 

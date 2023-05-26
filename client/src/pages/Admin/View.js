@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { useDispatch } from "react-redux";
 import "./view.css";
+import Layout from "../../components/Layout";
 
 function View() {
   const [patient, setPatient] = useState({});
@@ -41,6 +42,7 @@ function View() {
   }, [dispatch, fetchPatientData, id]);
 
   return (
+    <Layout>
     <div className="container">
       <div className="card">
         <div className="card-header">
@@ -221,6 +223,7 @@ function View() {
         </div>
       </div>
     </div>
+    </Layout>
   );
 }
 

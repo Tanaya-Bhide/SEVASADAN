@@ -1,7 +1,7 @@
 import { Button, Col, Form, Input, Row, TimePicker } from "antd";
 import moment from "moment";
 import React from "react";
-
+import "./DoctorForm.css";
 function DoctorForm({ onFinish, initivalValues }) {
   return (
     <Form
@@ -17,7 +17,7 @@ function DoctorForm({ onFinish, initivalValues }) {
         }),
       }}
     >
-      <h1 className="card-title mt-3">Personal Information</h1>
+      <h1 className="tanaya mt-3">Personal Information</h1>
       <Row gutter={20}>
         <Col span={8} xs={24} sm={24} lg={8}>
           <Form.Item
@@ -26,7 +26,7 @@ function DoctorForm({ onFinish, initivalValues }) {
             name="firstName"
             rules={[{ required: true }]}
           >
-            <Input placeholder="First Name" />
+            <Input placeholder="First Name" type="text" />
           </Form.Item>
         </Col>
         <Col span={8} xs={24} sm={24} lg={8}>
@@ -71,7 +71,7 @@ function DoctorForm({ onFinish, initivalValues }) {
         </Col>
       </Row>
       <hr />
-      <h1 className="card-title mt-3">Professional Information</h1>
+      <h1 className="tanaya mt-3">Professional Information</h1>
       <Row gutter={20}>
         <Col span={8} xs={24} sm={24} lg={8}>
           <Form.Item

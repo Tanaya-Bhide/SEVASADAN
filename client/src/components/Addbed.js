@@ -1,57 +1,61 @@
-import { useState } from "react"
+import React, { useState } from 'react';
+import { FormGroup, FormControl, InputLabel, Input, Button, Typography } from '@mui/material';
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from 'axios';
+import Layout from './Layout';
 
 const initialValue = {
-  roomno:'',
-  bedno:'',
+  bedno: '',
+  roomno: '',
   patient: ''
 }
 
-const AddBeds=()=>{
-  const navigate= useNavigate();
+const AddBeds = () => {
+  const [user, setUser] = useState(initialValue);
+  const { bedno, roomno, patient } = user;
 
-  const [user, setUser]= useState(initialValue);
-  const { roomno, bedno, patient } = user;
+  const navigate = useNavigate();
 
-    const onValueChange=(e)=>{
-      setUser({...user, [e.target.name]:e.target.value})
-        console.log(e.target.value);
-    }
+  const onValueChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
 
-    const addUserDetails=async()=>{
-        await axios.post('api/admin/addbed', user)
-        navigate('/getbed');
-    }
+  const addUserDetails = async () => {
+    await axios.post('api/admin/addbed')
+    navigate('/getbed');
+  }
 
-    return(
-        <>
-           
-  <div className="container">
-    <div className="content">
-        <div className="user-details">
-          <div className="input-box">
-            <span className="details">Room Number</span>
-            <input type="text" onChange={(e)=>{onValueChange(e)}} value={roomno} placeholder="Enter Room Number" name="roomno"/>
-          </div>
-          <div className="input-box">
-            <span className="details">Bed Number</span>
-            <input type="text" onChange={(e)=>{onValueChange(e)}} value={bedno} placeholder="Enter Bed Number"  name="bedno"/>
-          </div>
-          <div className="input-box">
-            <span className="details">Patient</span>
-            <input type="text" onChange={(e)=>{onValueChange(e)}} value={patient} placeholder="Enter Patients name" name="patient" />
-          </div>
-        <div class="button">
-         <button className="button" onClick={()=>addUserDetails()}>Add Bed</button>
-        </div>
-    </div>
-  </div>
-  </div>
-        </>
-        
-    )
+  const formStyles = {
+    width: '50%',
+    margin: '5% 0 0 25%'
+  };
 
+  const formControlStyles = {
+    marginTop: '30px'
+  };
+
+  return (
+    <Layout>
+      <Typography variant="h4" style={{ fontSize: '24px', marginBottom: '20px' }}>Add Beds</Typography>
+
+      <FormGroup style={formStyles}>
+        <InputLabel htmlFor="bedno-input">Bed Number</InputLabel>
+        <Input onChange={onValueChange} name="bedno" value={bedno} id="bedno-input" />
+      </FormGroup>
+      <FormGroup style={formStyles}>
+        <InputLabel htmlFor="roomno-input">Room Number</InputLabel>
+        <Input onChange={onValueChange} name="roomno" value={roomno} id="roomno-input" />
+      </FormGroup>
+      <FormGroup style={formStyles}>
+        <InputLabel htmlFor="patient-input">Patient</InputLabel>
+        <Input onChange={onValueChange} name="patient" value={patient} id="patient-input" />
+      </FormGroup>
+      <FormGroup style={formStyles}>
+        <Button className='add-bed-button' color="primary" onClick={addUserDetails} style={{ marginTop: '20px' }}>Add Bed</Button>
+      </FormGroup>
+    </Layout>
+  )
 }
 
 export default AddBeds;
+

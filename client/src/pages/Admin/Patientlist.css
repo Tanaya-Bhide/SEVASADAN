@@ -1,4 +1,4 @@
- /* Table styles */
+/* Table styles */
 table {
   border-collapse: collapse;
   width: 100%;
@@ -28,6 +28,7 @@ button {
   font-size: 14px;
   margin-right: 10px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 button:hover {
@@ -40,6 +41,7 @@ h1 {
   margin-bottom: 10px;
   font-size: 24px;
 }
+
 /* PatientList.css */
 
 h1 {
@@ -83,38 +85,57 @@ tr:hover {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   border: none;
-  color: #fff;
+  color: white !important; /* Change the color to white */
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
-.btn-edit {
-  background-color: #007bff;
+.btn:hover {
+  background-color: #f0f0f0; /* Change the off-white color on hover */
+  color: #333; /* Change the color to off-black on hover */
 }
 
-.btn-view {
-  background-color: #17a2b8;
+.btn.btn-edit {
+  background-color: rgb(255,165,0);
 }
 
-.btn-delete {
-  background-color: #dc3545;
+.btn.btn-edit:hover {
+  background-color: rgb(255, 135, 0);
+  filter: brightness(110%);
 }
 
-.btn-edit:hover {
-  background-color: #0069d9;
+
+
+
+.btn.btn-view {
+  background-color: #3c8dbc;
 }
 
-.btn-view:hover {
-  background-color: #138496;
+.btn.btn-view:hover {
+  background-color: #2980b9; /* Change the color to your desired hover effect */
 }
 
-.btn-delete:hover {
-  background-color: #c82333;
+
+.btn.btn-delete {
+  background-color: rgb(231, 76, 60);
+}
+
+.btn.btn-delete:hover {
+  background-color: rgb(192, 57, 43); /* Change the color to your desired hover effect */
+}
+
+.btn.btn-billing {
+  background-color: rgb(195, 16, 64);
+}
+
+.btn.btn-billing:hover {
+  background-color: rgb(150, 10, 50); /* Change the color to your desired hover effect */
 }
 
 .toast-success {
   background-color: #28a745;
 }
+
 /* PatientList.css */
 
 h1 {
@@ -152,5 +173,5 @@ h1 {
 }
 
 .input-container button:hover {
-  background-color: #0069d9;
+  background-color: #3e8e41;
 }

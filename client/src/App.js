@@ -25,7 +25,7 @@ import ListMedicine from "./components/ListMedicine";
 import EditMedicine from "./components/EditMedicine";
 import AddMedicine from "./components/AddMedicine";
 import Landing from "./pages/Landing";
-import BillingModule from "./components/BillingModule";
+import BillingModule from "./pages/Admin/BillingModule";
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
