@@ -8,7 +8,7 @@ const initialValue = {
   bedno: '',
   roomno: '',
   patient: ''
-}
+};
 
 const AddBeds = () => {
   const [user, setUser] = useState(initialValue);
@@ -17,13 +17,21 @@ const AddBeds = () => {
   const navigate = useNavigate();
 
   const onValueChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value })
-  }
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   const addUserDetails = async () => {
-    await axios.post('api/admin/addbed')
-    navigate('/getbed');
-  }
+    try {
+      await axios.post('/api/admin/addbed', {
+        bedno: bedno,
+        roomno: roomno,
+        patient: patient
+      });
+      navigate('/getbed');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const formStyles = {
     width: '50%',
@@ -54,8 +62,7 @@ const AddBeds = () => {
         <Button className='add-bed-button' color="primary" onClick={addUserDetails} style={{ marginTop: '20px' }}>Add Bed</Button>
       </FormGroup>
     </Layout>
-  )
-}
+  );
+};
 
 export default AddBeds;
-

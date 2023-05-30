@@ -3,7 +3,6 @@ import {
   Table,
   TableHead,
   TableCell,
-  Paper,
   TableRow,
   TableBody,
   Button,

@@ -63,7 +63,6 @@ function Notifications() {
           <div className="d-flex justify-content-end">
             <h1 className="anchor" onClick={()=>markAllAsSeen()}>Mark all as seen</h1>
           </div>
-
           {user?.unseenNotifications.map((notification) => (
             <div className="card p-2 mt-2" onClick={()=>navigate(notification.onClickPath)}>
                 <div className="card-text">{notification.message}</div>

@@ -307,53 +307,6 @@ router.get("/getbed", async (req, res) => {
     console.log("Error Occured", error);
   }
 });
-router.put("/:id", async (request, response) => {
-  let user = request.body;
 
-  const editUser = new patternn(user);
-  try {
-    await patternn.updateOne({ _id: request.params.id }, editUser);
-    response.status(201).json(editUser);
-  } catch (error) {
-    response.status(409).json({ message: error.message });
-  }
-});
-
-router.delete("/:id", async (request, response) => {
-  try {
-    await patternn.deleteOne({ _id: request.params.id });
-    response.status(201).json("User deleted Successfully");
-  } catch (error) {
-    response.status(409).json({ message: error.message });
-  }
-});
-
-router.get("/:id", async (request, response) => {
-  try {
-    const user = await patternn.findById(request.params.id);
-    response.status(200).json(user);
-  } catch (error) {
-    response.status(404).json({ message: error.message });
-  }
-});
-
-router.post('/billing', async (req, res) => {
-  try {
-    const { expenses, grossTotal, objectId, name } = req.body;
-
-    const newBilling = new Billing({
-      expenses: expenses.map(expense => ({ expenseType: expense.expenseType, amount: expense.amount })),
-      grossTotal,
-      objectId,
-      name,
-    });
-
-    const result = await newBilling.save();
-    res.json(result);
-  } catch (error) {
-    res.json({ message: error.message });
-  }
-});
-
-
+ 
 module.exports = router;
