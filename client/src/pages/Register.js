@@ -9,6 +9,7 @@ import { hideLoading, showLoading } from "../redux/alertsSlice";
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const onFinish = async (values) => {
     try {
       dispatch(showLoading());
@@ -26,29 +27,45 @@ function Register() {
     }
   };
 
+  const passwordValidationPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
   return (
     <div className="authentication">
       <div className="authentication-form card p-3">
         <h1 className="card-title">Nice To Meet U</h1>
         <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item label="Name" name="name">
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[{ required: true, message: "Please enter your name" }]}
+          >
             <Input placeholder="Name" name="name" />
           </Form.Item>
-          <Form.Item label="Email" name="email">
-            <Input 
-            placeholder="Email" 
-            name="email" />
-          </Form.Item>
-          <Form.Item label="Password" name="password">
-            <Input
-              placeholder="Password"
-              type="password"
-            />
-          </Form.Item>
-          <Button
-            className="primary-button my-2 full-width-button"
-            htmlType="submit"
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              { required: true, message: "Please enter your email" },
+              { type: "email", message: "Please enter a valid email" },
+            ]}
           >
+            <Input placeholder="Email" name="email" />
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              { required: true, message: "Please enter your password" },
+              {
+                pattern: passwordValidationPattern,
+                message:
+                  "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character",
+              },
+            ]}
+          >
+            <Input placeholder="Password" type="password" />
+          </Form.Item>
+          <Button className="primary-button my-2 full-width-button" htmlType="submit">
             REGISTER
           </Button>
           <Link to="/login" className="anchor mt-2">

@@ -51,14 +51,89 @@ function Patient() {
   });
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
+  const [ageError, setAgeError] = useState("");
+  const [dateError, setDateError] = useState("");
 
   /*const handleInputChange = (event) => {
     const { name, value } = event.target;
     setPatientData({ ...patientData, [name]: value });
   };
+  
 */
+  const validateAge = (value) => {
+    if (!value) {
+      return "Age is required";
+    }
+
+    const age = parseInt(value);
+    if (isNaN(age) || age <= 0 || age >= 200) {
+      return "Age must be valid";
+    }
+
+    // Additional age validation logic can be added here if needed
+    {
+      ageError && <div style={{ color: "red" }}>{ageError}</div>;
+    }
+
+    return "";
+  };
+  const validatePhoneNumber = (value) => {
+    if (!value) {
+      return "Phone number is required";
+    }
+
+    const phoneNumberPattern = /^\d{10}$/;
+    if (!phoneNumberPattern.test(value)) {
+      return "Phone number must be a 10-digit number";
+    }
+
+    return "";
+  };
+  const validateDate = (value) => {
+    if (!value) {
+      return "Date is required";
+    }
+
+    const inputDate = new Date(value);
+    if (isNaN(inputDate.getTime())) {
+      return "Invalid date format";
+    }
+
+    const today = new Date();
+    const nextYear = new Date(
+      today.getFullYear() + 1,
+      today.getMonth(),
+      today.getDate()
+    );
+
+    if (inputDate < today) {
+      return "Selected date cannot be older than today";
+    }
+
+    if (inputDate > nextYear) {
+      return "Selected date cannot be in the next year";
+    }
+
+    return "";
+  };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+    if (name === "phone") {
+      const error = validatePhoneNumber(value);
+      setPhoneError(error);
+    }
+    if (name === "age") {
+      const ageError = validateAge(value);
+      setAgeError(ageError);
+    }
+    if (name === "date") {
+      const dateError = validateDate(value);
+      setDateError(dateError);
+    }
+
     const nameArray = name.split(".");
     let newData = { ...patientData };
 
@@ -206,7 +281,9 @@ function Patient() {
             name="age"
             value={patientData.age}
             onChange={handleInputChange}
+            style={{ border: ageError ? "2px solid red" : "2px solid black" }}
           />
+          {ageError && <div style={{ color: "red" }}>{ageError}</div>}
         </label>
 
         <label>
@@ -247,8 +324,13 @@ function Patient() {
             name="phone"
             value={patientData.phone}
             onChange={handleInputChange}
+            style={{
+              border: phoneError ? "2px solid red" : "2px solid black",
+            }}
           />
+          {phoneError && <div style={{ color: "red" }}>{phoneError}</div>}
         </label>
+
         <label>
           complaints:
           <textarea
