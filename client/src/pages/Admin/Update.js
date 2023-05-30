@@ -30,6 +30,39 @@ function Update() {
     }));
   };
 
+  const validateAge = (age) => {
+    if (age <= 0 || age > 150) {
+      return "Age must be between 1 and 150";
+    }
+    return "";
+  };
+
+  const validateDate = (date) => {
+    const currentDate = new Date().toISOString().split("T")[0];
+    if (date > currentDate) {
+      return "Date cannot be in the future";
+    }
+    return "";
+  };
+
+  const validateTime = (time) => {
+    const currentTime = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    if (time > currentTime) {
+      return "Time cannot be in the future";
+    }
+    return "";
+  };
+
+  const validatePhoneNumber = (phoneNumber) => {
+    const phoneNumberRegex = /^[0-9]{10}$/;
+    if (!phoneNumberRegex.test(phoneNumber)) {
+      return "Phone number must be a 10-digit number";
+    }
+    return "";
+  };
   useEffect(() => {
     const fetchPatientData = async () => {
       try {
@@ -96,34 +129,43 @@ function Update() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="mb-3">
-                <label htmlFor="age" className="form-label">
-                  Age
-                </label>
+              <div className="form-group">
+                <label htmlFor="age">Age</label>
                 <input
                   type="number"
-                  className="form-control"
+                  className={`form-control ${
+                    validateAge(formData.age) && "is-invalid"
+                  }`}
                   id="age"
                   name="age"
                   value={formData.age || ""}
                   onChange={handleInputChange}
                 />
+                {validateAge(formData.age) && (
+                  <div className="invalid-feedback">
+                    {validateAge(formData.age)}
+                  </div>
+                )}
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="phone" className="form-label">
-                  Phone
-                </label>
+              <div className="form-group">
+                <label htmlFor="phone">Phone Number</label>
                 <input
-                  type="text"
-                  className="form-control"
+                  type="tel"
+                  className={`form-control ${
+                    validatePhoneNumber(formData.phone) && "is-invalid"
+                  }`}
                   id="phone"
                   name="phone"
                   value={formData.phone || ""}
                   onChange={handleInputChange}
                 />
+                {validatePhoneNumber(formData.phone) && (
+                  <div className="invalid-feedback">
+                    {validatePhoneNumber(formData.phone)}
+                  </div>
+                )}
               </div>
-
               <div className="mb-3">
                 <label htmlFor="address" className="form-label">
                   Address
@@ -453,13 +495,24 @@ function Update() {
                     <label for="date">Date</label>
                   </td>
                   <td>
-                    <input
-                      type="date"
-                      name="assessedBy.date"
-                      value={formData.assessedBy?.date || ""}
-                      onChange={handleNestedInputChange}
-                      className="form-control"
-                    />
+                    <div className="form-group">
+                      <label htmlFor="date">Date</label>
+                      <input
+                        type="date"
+                        className={`form-control ${
+                          validateDate(formData.date) && "is-invalid"
+                        }`}
+                        id="date"
+                        name="date"
+                        value={formData.date || ""}
+                        onChange={handleInputChange}
+                      />
+                      {validateDate(formData.date) && (
+                        <div className="invalid-feedback">
+                          {validateDate(formData.date)}
+                        </div>
+                      )}
+                    </div>
                   </td>
                 </tr>
                 <tr>
@@ -467,15 +520,24 @@ function Update() {
                     <label for="time">Time</label>
                   </td>
                   <td>
-                    <input
-                      type="text"
-                      id="time"
-                      name="assessedBy.time"
-                      value={formData.assessedBy?.time || ""}
-                      onChange={handleNestedInputChange}
-                      required
-                      className="form-control"
-                    />
+                    <div className="form-group">
+                      <label htmlFor="time">Time</label>
+                      <input
+                        type="time"
+                        className={`form-control ${
+                          validateTime(formData.time) && "is-invalid"
+                        }`}
+                        id="time"
+                        name="time"
+                        value={formData.time || ""}
+                        onChange={handleInputChange}
+                      />
+                      {validateTime(formData.time) && (
+                        <div className="invalid-feedback">
+                          {validateTime(formData.time)}
+                        </div>
+                      )}
+                    </div>
                   </td>
                 </tr>
               </table>
